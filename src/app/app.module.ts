@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { OverlayContainer } from "@angular/cdk/overlay"
 
-import { SidenavModule } from "./modules/sidenav/sidenav.module"
+import { NavigationModule } from "./modules/navigation/navigation.module"
 
 import { AppRoutingModule } from "./app-routing.module"
 import { AppComponent } from './app.component'
@@ -16,7 +16,7 @@ import { AppComponent } from './app.component'
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    SidenavModule
+    NavigationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -8,10 +8,10 @@ import { MatIconModule } from "@angular/material/icon"
 import { MatButtonModule } from "@angular/material/button"
 import { MatListModule } from "@angular/material/list"
 
-import { SidenavComponent } from './sidenav.component'
+import { NavigationComponent } from './navigation.component'
 
 @NgModule({
-  declarations: [SidenavComponent],
+  declarations: [NavigationComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -21,6 +21,6 @@ import { SidenavComponent } from './sidenav.component'
     MatButtonModule,
     MatListModule
   ],
-  exports: [SidenavComponent]
+  exports: [NavigationComponent]
 })
-export class SidenavModule { }
+export class NavigationModule { }
