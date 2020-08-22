@@ -6,7 +6,13 @@ import { BooksComponent } from "./books.component"
 const routes: Routes = [
   {
     path: '',
-    component: BooksComponent
+    component: BooksComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('./book-detail/book-detail.module').then(module => module.BookDetailModule)
+      }
+    ]
   }
 ]
 

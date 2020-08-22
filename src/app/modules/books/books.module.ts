@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 
+import { MatSidenavModule } from "@angular/material/sidenav"
+
 import { BooksRoutingModule } from './books-routing.module'
 import { BooksComponent } from './books.component'
 
@@ -9,7 +11,8 @@ import { BooksComponent } from './books.component'
   declarations: [BooksComponent],
   imports: [
     CommonModule,
-    BooksRoutingModule
+    BooksRoutingModule,
+    MatSidenavModule
   ]
 })
 export class BooksModule { }
