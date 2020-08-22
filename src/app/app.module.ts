@@ -1,8 +1,12 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgModule } from '@angular/core'
+import { BrowserModule } from '@angular/platform-browser'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { OverlayContainer } from "@angular/cdk/overlay"
 
-import { AppComponent } from './app.component';
+import { SidenavModule } from "./modules/sidenav/sidenav.module"
+
+import { AppRoutingModule } from "./app-routing.module"
+import { AppComponent } from './app.component'
 
 @NgModule({
   declarations: [
@@ -10,9 +14,15 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    SidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(overlayContainer: OverlayContainer) {
+    overlayContainer.getContainerElement().classList.add('angular-material-router-app-theme')
+  }
+}
