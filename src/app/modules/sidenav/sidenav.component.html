@@ -1,1 +1,11 @@
-<p>sidenav works!</p>
+<mat-sidenav-container>
+    <mat-sidenav opened="false" mode="over" #snav>drawer</mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar color="primary">
+            <button type="button" aria-label="Esconder menu lateral" mat-icon-button (click)="snavToggle(snav)">
+                <mat-icon>menu</mat-icon>
+            </button>
+        </mat-toolbar>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>
