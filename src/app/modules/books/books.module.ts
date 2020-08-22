@@ -7,11 +7,12 @@ import { MatGridListModule } from "@angular/material/grid-list"
 import { FlexLayoutModule } from "@angular/flex-layout"
 
 import { BooksRoutingModule } from './books-routing.module'
-import { BooksComponent } from './books.component'
+import { BooksComponent } from './books.component';
+import { BookCardComponent } from './book-card/book-card.component'
 
 
 @NgModule({
-  declarations: [BooksComponent],
+  declarations: [BooksComponent, BookCardComponent],
   imports: [
     CommonModule,
     BooksRoutingModule,
