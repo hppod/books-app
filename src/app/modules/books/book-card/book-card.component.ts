@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core'
+import { Livro } from './../../../core/models/book.model'
 
 @Component({
   selector: 'app-book-card',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BookCardComponent implements OnInit {
 
+  @Input() Book: Livro
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  sliceSynopsis(value: String): String {
+    return `${value.slice(0, 100)}...`
   }
 
 }

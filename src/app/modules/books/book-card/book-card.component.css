@@ -1,0 +1,11 @@
+.author-image {
+    background-size: cover;
+}
+
+.content>mat-card {
+    width: 200px;
+}
+
+.bookCover-image {
+    height: 400px;
+}
