@@ -10,7 +10,7 @@ import { BooksRoutingModule } from './books-routing.module'
 import { BooksComponent } from './books.component';
 import { BookCardComponent } from './book-card/book-card.component';
 import { BookDetailComponent } from './book-detail/book-detail.component'
-
+import { ComponentsModule } from "./../../components/components.module"
 
 @NgModule({
   declarations: [
@@ -24,7 +24,8 @@ import { BookDetailComponent } from './book-detail/book-detail.component'
     MatCardModule,
     MatButtonModule,
     MatGridListModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    ComponentsModule
   ]
 })
 export class BooksModule { }

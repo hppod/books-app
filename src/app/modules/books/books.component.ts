@@ -13,7 +13,7 @@ export class BooksComponent implements OnInit, OnDestroy {
 
   private httpRequest: Subscription
 
-  dataset: Livro[] = new Array()
+  dataset: Livro[]
 
   constructor(
     private booksService: BooksService,

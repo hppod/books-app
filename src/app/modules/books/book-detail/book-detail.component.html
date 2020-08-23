@@ -1,4 +1,5 @@
-<div class="content" fxLayout="row wrap" fxLayoutGap="16px grid">
+<app-loading *ngIf="!Book"></app-loading>
+<div *ngIf="Book" class="content" fxLayout="row wrap" fxLayoutGap="16px grid">
     <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%">
         <mat-card class="mat-elevation-z0">
             <img mat-card-image class="bookCover-image" [src]="Book.imagem" alt="Photo of a {{Book.nome}}">
@@ -15,10 +16,10 @@
             </div>
             <div *ngIf="Book.isbn10 || Book.isbn13" class="row">
                 <br>
-                <span *ngIf="Book.isbn10" class="bookInfo-span"><b class="bookISBN-bold">ISBN-10: </b>
+                <span class="bookInfo-span"><b class="bookISBN-bold">ISBN-10: </b>
                     {{Book.isbn10}}</span>
                 &nbsp;
-                <span *ngIf="Book.isbn13" class="bookInfo-span"><b class="bookISBN-bold">ISBN-13: </b>
+                <span class="bookInfo-span"><b class="bookISBN-bold">ISBN-13: </b>
                     {{Book.isbn13}}</span>
             </div>
             <br>
