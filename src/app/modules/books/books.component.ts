@@ -1,8 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core'
 import { Subscription } from 'rxjs'
+import { MatDialog } from "@angular/material/dialog"
 import { Livro } from './../../core/models/book.model'
 import { BooksService } from './../../core/services/books.service'
 import { Toastr } from './../../core/services/toastr.service'
+import { NewBookComponent } from "./new-book/new-book.component"
 
 @Component({
   selector: 'app-books',
@@ -18,6 +20,7 @@ export class BooksComponent implements OnInit, OnDestroy {
   constructor(
     private booksService: BooksService,
     private toastr: Toastr,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -33,6 +36,21 @@ export class BooksComponent implements OnInit, OnDestroy {
       this.books = response.body['data']
     }, err => {
       this.toastr.showToastrError(`${err.status} - ${err.error['message']}`)
+    })
+  }
+
+  openNewBookModal(): void {
+    const dialogRef = this.dialog.open(NewBookComponent, {
+      disableClose: true,
+      width: '600px',
+      height: '600px',
+    })
+
+    dialogRef.afterClosed().subscribe(newBookAdded => {
+      if (newBookAdded) {
+        this.books = undefined
+        this.findAllBooks()
+      }
     })
   }
 

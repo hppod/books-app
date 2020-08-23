@@ -1,5 +1,8 @@
 <app-loading *ngIf="!books"></app-loading>
 <div *ngIf="books" class="content" fxLayout="row wrap" fxLayoutGap="16px grid">
+    <div fxFlex="100%" fxFlex.xs="100%" fxFlex.sm="100%">
+        <button mat-flat-button color="primary" (click)="openNewBookModal()">Adicionar livro</button>
+    </div>
     <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let book of books">
         <app-book-card [Book]="book"></app-book-card>
     </div>

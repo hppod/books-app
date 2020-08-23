@@ -4,10 +4,10 @@ export interface Livro {
     _id: String
     nome: String
     sinopse: String
-    paginas: Number
+    paginas?: Number
     imagem: String
     editora: String
     autor: Autor,
-    isbn10: String,
-    isbn13: String
+    isbn10?: String,
+    isbn13?: String
 }

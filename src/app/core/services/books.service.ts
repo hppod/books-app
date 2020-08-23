@@ -19,4 +19,8 @@ export class BooksService {
     return this.http.get<Livro>(`${API_URL}/livro/listarUm/${bookName}`, { observe: 'response' })
   }
 
+  createNewBook(body: Livro): Observable<HttpResponse<Livro>> {
+    return this.http.post<Livro>(`${API_URL}/livro/criar`, body, { observe: 'response' })
+  }
+
 }
