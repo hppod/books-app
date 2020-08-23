@@ -1,6 +1,6 @@
-<app-loading *ngIf="!dataset"></app-loading>
-<div *ngIf="dataset" class="content" fxLayout="row wrap" fxLayoutGap="16px grid">
-    <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let book of dataset">
+<app-loading *ngIf="!books"></app-loading>
+<div *ngIf="books" class="content" fxLayout="row wrap" fxLayoutGap="16px grid">
+    <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let book of books">
         <app-book-card [Book]="book"></app-book-card>
     </div>
 </div>

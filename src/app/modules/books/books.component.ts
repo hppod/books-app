@@ -13,7 +13,7 @@ export class BooksComponent implements OnInit, OnDestroy {
 
   private httpRequest: Subscription
 
-  dataset: Livro[]
+  books: Livro[]
 
   constructor(
     private booksService: BooksService,
@@ -30,7 +30,7 @@ export class BooksComponent implements OnInit, OnDestroy {
 
   findAllBooks(): void {
     this.httpRequest = this.booksService.findAllBooks().subscribe(response => {
-      this.dataset = response.body['data']
+      this.books = response.body['data']
     }, err => {
       this.toastr.showToastrError(`${err.status} - ${err.error['message']}`)
     })
