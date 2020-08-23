@@ -9,3 +9,11 @@
 .bookCover-image {
     height: 400px;
 }
+
+.routerLinkBook{
+    cursor: pointer;
+}
+
+.routerLinkBook:hover{
+    text-decoration: underline;
+}

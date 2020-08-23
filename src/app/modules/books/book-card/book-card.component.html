@@ -4,9 +4,10 @@
         <mat-card-title>{{Book.autor.nome}}</mat-card-title>
         <mat-card-subtitle>{{Book.editora}}</mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image class="bookCover-image" [src]="Book.imagem" alt="Photo of a {{Book.nome}}">
+    <img mat-card-image [routerLink]="['/books/detail', Book._id]" class="bookCover-image routerLinkBook"
+        [src]="Book.imagem" alt="Photo of a {{Book.nome}}">
     <mat-card-content>
-        <span class="mat-h2">{{Book.nome}}</span>
+        <span [routerLink]="['/books/detail', Book._id]" class="mat-h2 routerLinkBook">{{Book.nome}}</span>
         <p>
             {{sliceSynopsis(Book.sinopse)}}
         </p>
