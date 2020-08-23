@@ -7,5 +7,7 @@ export interface Livro {
     paginas: Number
     imagem: String
     editora: String
-    autor: Autor
+    autor: Autor,
+    isbn10: String,
+    isbn13: String
 }

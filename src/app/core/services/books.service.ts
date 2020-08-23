@@ -15,4 +15,8 @@ export class BooksService {
     return this.http.get<Livro[]>(`${API_URL}/livro/listarTodos`, { observe: 'response' })
   }
 
+  findBookByName(bookName: String): Observable<HttpResponse<Livro>> {
+    return this.http.get<Livro>(`${API_URL}/livro/listarUm/${bookName}`, { observe: 'response' })
+  }
+
 }
