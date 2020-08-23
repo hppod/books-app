@@ -10,7 +10,7 @@ const routes: Routes = [
     component: BooksComponent
   },
   {
-    path: 'detail/:_id',
+    path: 'detail/:nameBook',
     component: BookDetailComponent
   }
 ]
