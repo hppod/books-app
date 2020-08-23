@@ -1,0 +1,76 @@
+<h2 mat-dialog-title>Adicionar um livro</h2>
+<mat-horizontal-stepper linear="true" #stepper>
+    <mat-step [stepControl]="authorFormGroup" editable="false">
+        <ng-template matStepLabel>{{stepAuthorLabel}}</ng-template>
+        <mat-form-field *ngIf="!newAuthorForm" class="form-element">
+            <mat-label>Selecione um autor</mat-label>
+            <mat-select (selectionChange)="setAuthor($event)" [(value)]="indexOfAuthorSelected" required>
+                <mat-option *ngFor="let author of authors; let i = index" [value]="i">{{author.nome}}</mat-option>
+            </mat-select>
+            <mat-hint class="select-author" (click)="newAuthor()">Não encontrou o autor desejado? Adicione um agora
+                mesmo</mat-hint>
+        </mat-form-field>
+        <form *ngIf="newAuthorForm" [formGroup]="authorFormGroup" class="form">
+            <div class="form-element">
+                <span class="select-author" (click)="selectAuthor()">Quero voltar e escolher um autor</span>
+            </div>
+            <mat-form-field class="form-element">
+                <mat-label>Nome</mat-label>
+                <input matInput formControlName="nome" placeholder="Nome" required>
+            </mat-form-field>
+            <mat-form-field class="form-element">
+                <mat-label>Imagem</mat-label>
+                <input matInput formControlName="imagem" placeholder="Link da imagem">
+            </mat-form-field>
+            <mat-form-field class="form-element">
+                <mat-label>Biografia</mat-label>
+                <textarea matInput formControlName="biografia" placeholder="Biografia"></textarea>
+            </mat-form-field>
+        </form>
+        <div class="form-element">
+            <button class="button" color="primary" mat-button (click)="nextStep()" matStepperNext
+                [disabled]="authorFormGroup.invalid">Próximo</button>
+        </div>
+    </mat-step>
+    <mat-step [stepControl]="bookFormGroup" editable="false">
+        <form [formGroup]="bookFormGroup" class="form">
+            <ng-template matStepLabel>Livro</ng-template>
+            <mat-form-field class="form-element">
+                <mat-label>Nome</mat-label>
+                <input matInput formControlName="nome" placeholder="Nome" required>
+            </mat-form-field>
+            <mat-form-field class="form-element">
+                <mat-label>Editora</mat-label>
+                <input matInput formControlName="editora" placeholder="Editora" required>
+            </mat-form-field>
+            <mat-form-field class="form-element">
+                <mat-label>Imagem</mat-label>
+                <input matInput formControlName="imagem" placeholder="Link da imagem" required>
+            </mat-form-field>
+            <mat-form-field class="form-element">
+                <mat-label>Sinopse</mat-label>
+                <textarea matInput formControlName="sinopse" placeholder="Sinopse" required></textarea>
+            </mat-form-field>
+            <mat-form-field class="form-element">
+                <mat-label>Páginas</mat-label>
+                <input matInput formControlName="paginas" placeholder="Páginas">
+            </mat-form-field>
+            <mat-form-field class="form-element">
+                <mat-label>ISBN-10</mat-label>
+                <input matInput formControlName="isbn10" placeholder="ISBN-10">
+            </mat-form-field>
+            <mat-form-field class="form-element">
+                <mat-label>ISBN-13</mat-label>
+                <input matInput formControlName="isbn13" placeholder="ISBN-13">
+            </mat-form-field>
+            <div class="form-element">
+                <button class="button" color="primary" mat-button [mat-dialog-close]="true"
+                    [disabled]="bookFormGroup.invalid" (click)="createNewBook()">Adicionar
+                    livro</button>
+            </div>
+        </form>
+    </mat-step>
+</mat-horizontal-stepper>
+<div class="form-element">
+    <button mat-button class="button" color="warn" [mat-dialog-close]="false">Fechar</button>
+</div>
