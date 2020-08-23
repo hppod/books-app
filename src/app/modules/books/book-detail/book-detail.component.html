@@ -13,8 +13,8 @@
                 <br>
                 <span class="bookInfo-span">{{Book.paginas}} páginas</span>
             </div>
-            <br>
             <div *ngIf="Book.isbn10 || Book.isbn13" class="row">
+                <br>
                 <span *ngIf="Book.isbn10" class="bookInfo-span"><b class="bookISBN-bold">ISBN-10: </b>
                     {{Book.isbn10}}</span>
                 &nbsp;
