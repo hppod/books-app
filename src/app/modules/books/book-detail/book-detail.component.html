@@ -26,10 +26,10 @@
             </div>
             <div *ngIf="Book.isbn10 || Book.isbn13" class="row">
                 <br>
-                <span class="bookInfo-span"><b class="bookISBN-bold">ISBN-10: </b>
+                <span *ngIf="Book.isbn10" class="bookInfo-span"><b class="bookISBN-bold">ISBN-10: </b>
                     {{Book.isbn10}}</span>
                 &nbsp;
-                <span class="bookInfo-span"><b class="bookISBN-bold">ISBN-13: </b>
+                <span *ngIf="Book.isbn13" class="bookInfo-span"><b class="bookISBN-bold">ISBN-13: </b>
                     {{Book.isbn13}}</span>
             </div>
             <br>
