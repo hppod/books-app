@@ -1,10 +1,11 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms"
 import { Subscription } from "rxjs"
 import { Autor } from './../../../core/models/autor.model'
 import { Toastr } from "./../../../core/services/toastr.service"
 import { AuthorsService } from "./../../../core/services/authors.service"
 import { BooksService } from "./../../../core/services/books.service"
+import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 
 @Component({
   selector: 'app-new-book',
@@ -24,6 +25,8 @@ export class NewBookComponent implements OnInit, OnDestroy {
   authors: Autor[]
 
   isNewAuthor: boolean = false
+
+  @ViewChild('autosize') autosize: CdkTextareaAutosize
 
   constructor(
     private builder: FormBuilder,
