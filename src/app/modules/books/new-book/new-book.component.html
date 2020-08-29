@@ -2,15 +2,17 @@
 <mat-horizontal-stepper linear="true" #stepper>
     <mat-step [stepControl]="authorFormGroup" editable="false">
         <ng-template matStepLabel>{{stepAuthorLabel}}</ng-template>
-        <mat-form-field *ngIf="!newAuthorForm" class="form-element">
-            <mat-label>Selecione um autor</mat-label>
-            <mat-select (selectionChange)="setAuthor($event)" [(value)]="indexOfAuthorSelected" required>
-                <mat-option *ngFor="let author of authors; let i = index" [value]="i">{{author.nome}}</mat-option>
-            </mat-select>
-            <mat-hint class="select-author" (click)="newAuthor()">Não encontrou o autor desejado? Adicione um agora
-                mesmo</mat-hint>
-        </mat-form-field>
-        <form *ngIf="newAuthorForm" [formGroup]="authorFormGroup" class="form">
+        <form *ngIf="!isNewAuthor" [formGroup]="authorFormGroup" class="form">
+            <mat-form-field class="form-element">
+                <mat-label>Selecione um autor</mat-label>
+                <mat-select formControlName="autor" required>
+                    <mat-option *ngFor="let author of authors" [value]="author">{{author.nome}}</mat-option>
+                </mat-select>
+                <mat-hint class="select-author" (click)="newAuthor()">Não encontrou o autor desejado? Adicione um agora
+                    mesmo</mat-hint>
+            </mat-form-field>
+        </form>
+        <form *ngIf="isNewAuthor" [formGroup]="authorFormGroup" class="form">
             <div class="form-element">
                 <span class="select-author" (click)="selectAuthor()">Quero voltar e escolher um autor</span>
             </div>

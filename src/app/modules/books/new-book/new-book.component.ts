@@ -18,12 +18,8 @@ export class NewBookComponent implements OnInit, OnDestroy {
 
   authorFormGroup: FormGroup
   bookFormGroup: FormGroup
-
-  newAuthorForm: boolean = false
-  indexOfAuthorSelected: number
   stepAuthorLabel: String = 'Autor'
   authors: Autor[]
-
   isNewAuthor: boolean = false
 
   @ViewChild('autosize') autosize: CdkTextareaAutosize
@@ -37,7 +33,8 @@ export class NewBookComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.findAllAuthors()
-    this.initiliazeForms()
+    this.initializeBookFormGroup()
+    this.initializeSelectAuthorFormGroup()
   }
 
   ngOnDestroy(): void {
@@ -52,13 +49,13 @@ export class NewBookComponent implements OnInit, OnDestroy {
     })
   }
 
-  initiliazeForms(): void {
+  initializeSelectAuthorFormGroup() {
     this.authorFormGroup = this.builder.group({
-      nome: this.builder.control(null, [Validators.required, Validators.maxLength(200)]),
-      biografia: this.builder.control(null),
-      imagem: this.builder.control(null)
+      autor: this.builder.control(null, [Validators.required])
     })
+  }
 
+  initializeBookFormGroup(): void {
     this.bookFormGroup = this.builder.group({
       nome: this.builder.control(null, [Validators.required]),
       sinopse: this.builder.control(null, [Validators.required]),
@@ -71,30 +68,30 @@ export class NewBookComponent implements OnInit, OnDestroy {
     })
   }
 
-  setAuthor($event: any): void {
-    this.indexOfAuthorSelected = $event.value
-    this.authorFormGroup.controls['nome'].setValue(this.authors[this.indexOfAuthorSelected].nome)
+  initializeNewAuthorFormGroup() {
+    this.authorFormGroup = this.builder.group({
+      nome: this.builder.control(null, [Validators.required, Validators.maxLength(200)]),
+      biografia: this.builder.control(null),
+      imagem: this.builder.control(null)
+    })
   }
 
   newAuthor(): void {
-    this.indexOfAuthorSelected = null
-    this.isNewAuthor = true
-    this.newAuthorForm = !this.newAuthorForm
-    this.authorFormGroup.controls['nome'].setValue(null)
+    this.isNewAuthor = !this.isNewAuthor
+    this.initializeNewAuthorFormGroup()
   }
 
   selectAuthor(): void {
-    this.indexOfAuthorSelected = null
-    this.isNewAuthor = false
-    this.newAuthorForm = !this.newAuthorForm
+    this.isNewAuthor = !this.isNewAuthor
+    this.initializeSelectAuthorFormGroup()
   }
 
   nextStep() {
     if (this.isNewAuthor) {
       this.createNewAuthor(this.authorFormGroup.value)
     } else {
-      this.bookFormGroup.controls['autor'].setValue(this.authors[this.indexOfAuthorSelected]._id)
-      this.stepAuthorLabel = `Autor: ${this.authors[this.indexOfAuthorSelected].nome}`
+      this.bookFormGroup.controls['autor'].setValue(this.authorFormGroup.value['autor']['_id'])
+      this.stepAuthorLabel = `Autor: ${this.authorFormGroup.value['autor']['nome']}`
     }
   }
 
