@@ -3,7 +3,6 @@ import { ActivatedRoute } from "@angular/router"
 import { Subscription } from "rxjs"
 import { Livro } from "./../../../core/models/book.model"
 import { BooksService } from "./../../../core/services/books.service"
-import { Toastr } from "./../../../core/services/toastr.service"
 
 @Component({
   selector: 'app-book-detail',
@@ -15,11 +14,11 @@ export class BookDetailComponent implements OnInit, OnDestroy {
   private httpRequest: Subscription
 
   Book: Livro
+  hasError: boolean = false
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private booksService: BooksService,
-    private toastr: Toastr
+    private booksService: BooksService
   ) { }
 
   ngOnInit(): void {
@@ -36,7 +35,7 @@ export class BookDetailComponent implements OnInit, OnDestroy {
     this.httpRequest = this.booksService.findBookByName(bookName).subscribe(response => {
       this.Book = response.body['data']
     }, err => {
-      this.toastr.showToastrError(`${err.status} - ${err.error['message']}`)
+      this.hasError = true
     })
   }
 

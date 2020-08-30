@@ -3,7 +3,6 @@ import { Subscription } from 'rxjs'
 import { MatDialog } from "@angular/material/dialog"
 import { Livro } from './../../core/models/book.model'
 import { BooksService } from './../../core/services/books.service'
-import { Toastr } from './../../core/services/toastr.service'
 import { NewBookComponent } from "./new-book/new-book.component"
 
 @Component({
@@ -16,10 +15,10 @@ export class BooksComponent implements OnInit, OnDestroy {
   private httpRequest: Subscription
 
   books: Livro[]
+  hasError: boolean = false
 
   constructor(
     private booksService: BooksService,
-    private toastr: Toastr,
     public dialog: MatDialog
   ) { }
 
@@ -35,7 +34,7 @@ export class BooksComponent implements OnInit, OnDestroy {
     this.httpRequest = this.booksService.findAllBooks().subscribe(response => {
       this.books = response.body['data']
     }, err => {
-      this.toastr.showToastrError(`${err.status} - ${err.error['message']}`)
+      this.hasError = true
     })
   }
 
