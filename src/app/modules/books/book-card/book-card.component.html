@@ -1,15 +1,15 @@
 <mat-card class="mat-elevation-z4">
     <mat-card-header *ngIf="showHeader">
         <img mat-card-avatar class="author-image" *ngIf="Book.autor.imagem" [src]="Book.autor.imagem"
-            alt="Photo of a {{Book.autor.nome}}">
-        <img mat-card-avatar class="author-image" *ngIf="!Book.autor.imagem" src="./../../../../assets/writer.png"
-            alt="Photo of a {{Book.autor.nome}}">
-        <mat-card-title>{{Book.autor.nome}}</mat-card-title>
+            onError="this.src='./../../../../assets/writer1.png'" alt="Photo of a {{Book.autor.nome}}"
+            [routerLink]="['/authors/detail', Book.autor.nome]">
+        <mat-card-title [routerLink]="['/authors/detail', Book.autor.nome]" class="routerLinkBook">{{Book.autor.nome}}
+        </mat-card-title>
         <mat-card-subtitle>{{Book.editora}}</mat-card-subtitle>
     </mat-card-header>
     <img mat-card-image [routerLink]="['/books/detail', Book.nome]" class="bookCover-image routerLinkBook"
         [src]="Book.imagem" alt="Photo of a {{Book.nome}}">
-    <mat-card-content >
+    <mat-card-content>
         <span [routerLink]="['/books/detail', Book.nome]" class="mat-h2 routerLinkBook">{{Book.nome}}</span>
         <p *ngIf="showSynopsis">
             {{sliceSynopsis(Book.sinopse)}}
