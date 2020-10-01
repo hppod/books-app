@@ -1,10 +1,13 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms"
 import { Subscription } from "rxjs"
+import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import { Autor } from './../../../core/models/autor.model'
 import { Toastr } from "./../../../core/services/toastr.service"
 import { AuthorsService } from "./../../../core/services/authors.service"
 import { BooksService } from "./../../../core/services/books.service"
+import { BookValidator } from "./../../../core/validators/book.validator"
+import { AuthorValidator } from "./../../../core/validators/author.validator"
 
 @Component({
   selector: 'app-new-book',
@@ -17,24 +20,25 @@ export class NewBookComponent implements OnInit, OnDestroy {
 
   authorFormGroup: FormGroup
   bookFormGroup: FormGroup
-
-  newAuthorForm: boolean = false
-  indexOfAuthorSelected: number
   stepAuthorLabel: String = 'Autor'
   authors: Autor[]
-
   isNewAuthor: boolean = false
+
+  @ViewChild('autosize') autosize: CdkTextareaAutosize
 
   constructor(
     private builder: FormBuilder,
     private toastr: Toastr,
     private authorsService: AuthorsService,
-    private booksService: BooksService
+    private booksService: BooksService,
+    private authorValidator: AuthorValidator,
+    private bookValidator: BookValidator
   ) { }
 
   ngOnInit(): void {
     this.findAllAuthors()
-    this.initiliazeForms()
+    this.initializeBookFormGroup()
+    this.initializeSelectAuthorFormGroup()
   }
 
   ngOnDestroy(): void {
@@ -49,15 +53,23 @@ export class NewBookComponent implements OnInit, OnDestroy {
     })
   }
 
-  initiliazeForms(): void {
+  initializeSelectAuthorFormGroup() {
     this.authorFormGroup = this.builder.group({
-      nome: this.builder.control(null, [Validators.required, Validators.maxLength(200)]),
+      autor: this.builder.control(null, [Validators.required])
+    })
+  }
+
+  initializeNewAuthorFormGroup() {
+    this.authorFormGroup = this.builder.group({
+      nome: this.builder.control(null, [Validators.required, Validators.maxLength(200)], this.authorValidator.validatorUniqueAuthorName()),
       biografia: this.builder.control(null),
       imagem: this.builder.control(null)
     })
+  }
 
+  initializeBookFormGroup(): void {
     this.bookFormGroup = this.builder.group({
-      nome: this.builder.control(null, [Validators.required]),
+      nome: this.builder.control(null, [Validators.required], this.bookValidator.validatorUniqueBookName()),
       sinopse: this.builder.control(null, [Validators.required]),
       paginas: this.builder.control(null),
       imagem: this.builder.control(null, [Validators.required]),
@@ -68,30 +80,22 @@ export class NewBookComponent implements OnInit, OnDestroy {
     })
   }
 
-  setAuthor($event: any): void {
-    this.indexOfAuthorSelected = $event.value
-    this.authorFormGroup.controls['nome'].setValue(this.authors[this.indexOfAuthorSelected].nome)
-  }
-
   newAuthor(): void {
-    this.indexOfAuthorSelected = null
-    this.isNewAuthor = true
-    this.newAuthorForm = !this.newAuthorForm
-    this.authorFormGroup.controls['nome'].setValue(null)
+    this.isNewAuthor = !this.isNewAuthor
+    this.initializeNewAuthorFormGroup()
   }
 
   selectAuthor(): void {
-    this.indexOfAuthorSelected = null
-    this.isNewAuthor = false
-    this.newAuthorForm = !this.newAuthorForm
+    this.isNewAuthor = !this.isNewAuthor
+    this.initializeSelectAuthorFormGroup()
   }
 
   nextStep() {
     if (this.isNewAuthor) {
       this.createNewAuthor(this.authorFormGroup.value)
     } else {
-      this.bookFormGroup.controls['autor'].setValue(this.authors[this.indexOfAuthorSelected]._id)
-      this.stepAuthorLabel = `Autor: ${this.authors[this.indexOfAuthorSelected].nome}`
+      this.bookFormGroup.controls['autor'].setValue(this.authorFormGroup.value['autor']['_id'])
+      this.stepAuthorLabel = `Autor: ${this.authorFormGroup.value['autor']['nome']}`
     }
   }
 
@@ -111,6 +115,14 @@ export class NewBookComponent implements OnInit, OnDestroy {
     }, err => {
       this.toastr.showToastrError(`${err.status} - ${err.error['message']}`)
     })
+  }
+
+  authorNameExists(): boolean {
+    return this.authorFormGroup.get('nome').hasError('authorNameAlreadyExists')
+  }
+
+  bookNameExists(): boolean {
+    return this.bookFormGroup.get('nome').hasError('bookNameAlreadyExists')
   }
 
 }
