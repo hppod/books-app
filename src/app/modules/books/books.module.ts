@@ -39,6 +39,8 @@ import { NewBookComponent } from './new-book/new-book.component'
     FlexLayoutModule,
     ComponentsModule
   ],
-
+  exports: [
+    BookCardComponent
+  ]
 })
 export class BooksModule { }

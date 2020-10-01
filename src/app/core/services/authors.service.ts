@@ -15,6 +15,10 @@ export class AuthorsService {
         return this.http.get<Autor[]>(`${API_URL}/autor/listarTodos`, { observe: 'response' })
     }
 
+    findAuthorByName(authorName: String): Observable<HttpResponse<Autor>> {
+        return this.http.get<Autor>(`${API_URL}/autor/listarUm/${authorName}`, { observe: 'response' })
+    }
+
     createNewAuthor(body: Autor): Observable<HttpResponse<Autor>> {
         return this.http.post<Autor>(`${API_URL}/autor/criar`, body, { observe: 'response' })
     }

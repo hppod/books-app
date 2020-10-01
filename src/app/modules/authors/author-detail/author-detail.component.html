@@ -1,0 +1,32 @@
+<app-loading *ngIf="!Author"></app-loading>
+<div *ngIf="Author" class="content" fxLayout="row wrap" fxLayoutGap="16px grid">
+    <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%">
+        <mat-card class="mat-elevation-z0">
+            <img mat-card-image class="AuthorCover-image" [src]="Author.imagem"
+                onError="this.src='./../../../../../assets/writer2.jpg'" alt="Photo of a {{Author.nome}}">
+        </mat-card>
+    </div>
+    <div fxFlex="75%" fxFlex.xs="100%" fxFlex.sm="67%">
+        <mat-card class="mat-elevation-z0">
+            <div class="row">
+                <span class="mat-display-1 uppercase-text">{{Author.nome}}</span>
+                <br>
+                <span class="authorInfo-span">{{countBooksOnBookCase(Author.livros.length)}}</span>
+            </div>
+            <br>
+            <div class="row">
+                <p *ngIf="Author.biografia" class="AuthorSynopsis-p">{{Author.biografia}}</p>
+                <p *ngIf="!Author.biografia" class="AuthorBiography-p">Não foi informada a biografia do autor</p>
+            </div>
+        </mat-card>
+    </div>
+    <div>
+        <span class="mat-subheading-2 uppercase-text">{{titleBooksOnBookCase(Author.livros.length)}}</span>
+        <br>
+        <div class="content" fxLayout="row wrap" fxLayoutGap="16px grid">
+            <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let book of Author.livros">
+                <app-book-card [Book]="book" [showHeader]="false" [showSynopsis]="false"></app-book-card>
+            </div>
+        </div>
+    </div>
+</div>
