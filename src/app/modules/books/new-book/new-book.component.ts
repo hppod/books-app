@@ -8,6 +8,7 @@ import { AuthorsService } from "./../../../core/services/authors.service"
 import { BooksService } from "./../../../core/services/books.service"
 import { BookValidator } from "./../../../core/validators/book.validator"
 import { AuthorValidator } from "./../../../core/validators/author.validator"
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-new-book',
@@ -32,7 +33,8 @@ export class NewBookComponent implements OnInit, OnDestroy {
     private authorsService: AuthorsService,
     private booksService: BooksService,
     private authorValidator: AuthorValidator,
-    private bookValidator: BookValidator
+    private bookValidator: BookValidator,
+    private dialogRef: MatDialogRef<NewBookComponent>
   ) { }
 
   ngOnInit(): void {
@@ -112,9 +114,15 @@ export class NewBookComponent implements OnInit, OnDestroy {
   createNewBook(): void {
     this.booksService.createNewBook(this.bookFormGroup.value).subscribe(response => {
       this.toastr.showToastrSuccess(`O livro ${response.body['data']['nome']} foi adicionado com sucesso!`)
+      this.closeDialog(true)
     }, err => {
       this.toastr.showToastrError(`${err.status} - ${err.error['message']}`)
+      this.closeDialog()
     })
+  }
+
+  closeDialog(b: boolean = false): void {
+    this.dialogRef.close(b)
   }
 
   authorNameExists(): boolean {

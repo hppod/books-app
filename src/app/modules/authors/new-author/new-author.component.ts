@@ -25,7 +25,7 @@ export class NewAuthorComponent implements OnInit, OnDestroy {
     private toastr: Toastr,
     private authorsService: AuthorsService,
     private authorValidator: AuthorValidator,
-    private dialogRef: MatDialogRef<NewAuthorComponent>,
+    private dialogRef: MatDialogRef<NewAuthorComponent>
   ) { }
 
   ngOnInit(): void {
