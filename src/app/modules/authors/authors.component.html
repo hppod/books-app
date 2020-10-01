@@ -1,0 +1,9 @@
+<app-loading *ngIf="!authors"></app-loading>
+<div *ngIf="authors" class="content" fxLayout="row wrap" fxLayoutGap="16px grid">
+    <div fxFlex="100%" fxFlex.xs="100%" fxFlex.sm="100%">
+        <button mat-flat-button color="primary" (click)="openNewAuthorModal()">Adicionar autor</button>
+    </div>
+    <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let author of authors">
+        <app-author-card [Author]="author"></app-author-card>
+    </div>
+</div>

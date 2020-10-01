@@ -1,0 +1,17 @@
+<mat-card class="mat-elevation-z4">
+    <mat-card-header>
+        <mat-card-title>{{Author.nome}}</mat-card-title>
+        <mat-card-subtitle>{{countBooksOnBookCase(Author.livros.length)}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image [routerLink]="['/authors/detail', Author.nome]" class="authorCover-image routerLinkAuthor"
+        [src]="Author.imagem" onError="this.src='./../../../../assets/writer2.jpg'" alt="Photo of a {{Author.nome}}">
+    <mat-card-content>
+        <span [routerLink]="['/authors/detail', Author.nome]" class="mat-h2 routerLinkAuthor">{{Author.nome}}</span>
+        <p *ngIf="Author.biografia">
+            {{sliceBiography(Author.biografia)}}
+        </p>
+        <p *ngIf="!Author.biografia">
+            Não foi informada a biografia do autor
+        </p>
+    </mat-card-content>
+</mat-card>

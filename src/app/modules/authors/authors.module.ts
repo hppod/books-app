@@ -5,42 +5,37 @@ import { ReactiveFormsModule } from "@angular/forms"
 import { MatCardModule } from "@angular/material/card"
 import { MatButtonModule } from "@angular/material/button"
 import { MatDialogModule } from "@angular/material/dialog"
-import { MatStepperModule } from "@angular/material/stepper"
 import { MatFormFieldModule } from "@angular/material/form-field"
 import { MatInputModule } from "@angular/material/input"
-import { MatSelectModule } from "@angular/material/select"
 import { FlexLayoutModule } from "@angular/flex-layout"
 
-import { BooksRoutingModule } from './books-routing.module'
-import { BooksComponent } from './books.component';
-import { BookCardComponent } from './book-card/book-card.component';
-import { BookDetailComponent } from './book-detail/book-detail.component'
+import { AuthorsRoutingModule } from './authors-routing.module'
+import { AuthorsComponent } from './authors.component'
 import { ComponentsModule } from "./../../components/components.module";
-import { NewBookComponent } from './new-book/new-book.component'
+import { AuthorCardComponent } from './author-card/author-card.component';
+import { AuthorDetailComponent } from './author-detail/author-detail.component'
+import { BooksModule } from '../books/books.module';
+import { NewAuthorComponent } from './new-author/new-author.component'
 
 @NgModule({
   declarations: [
-    BooksComponent,
-    BookCardComponent,
-    BookDetailComponent,
-    NewBookComponent
+    AuthorsComponent,
+    AuthorCardComponent,
+    AuthorDetailComponent,
+    NewAuthorComponent,
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    BooksRoutingModule,
+    AuthorsRoutingModule,
+    ComponentsModule,
+    BooksModule,
     MatCardModule,
     MatButtonModule,
     MatDialogModule,
-    MatStepperModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSelectModule,
-    FlexLayoutModule,
-    ComponentsModule
-  ],
-  exports: [
-    BookCardComponent
+    FlexLayoutModule
   ]
 })
-export class BooksModule { }
+export class AuthorsModule { }

@@ -1,0 +1,22 @@
+.content {
+    padding: 10px;
+}
+
+.authorCover-image {
+    height: 400px;
+    max-width: 400px;
+}
+
+.uppercase-text {
+    text-transform: uppercase;
+}
+
+.authorInfo-span {
+    font-size: 14px;
+    color: rgb(120, 120, 120)
+}
+
+.AuthorBiography-p {
+    text-align: justify;
+    text-justify: inter-word;
+}
