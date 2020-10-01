@@ -16,7 +16,11 @@ export class AuthorCardComponent implements OnInit {
   }
 
   sliceBiography(value: String): String {
-    return `${value.slice(0, 100)}`
+    return `${value.slice(0, 100)}...`
+  }
+
+  countBooksOnBookCase(nBooks: Number): String {
+    return nBooks > 1 ? `${nBooks} livros na sua estante` : `${nBooks} livro na sua estante`
   }
 
 }
