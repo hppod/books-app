@@ -1,0 +1,15 @@
+.content>mat-card {
+    width: 200px;
+}
+
+.authorCover-image {
+    height: 400px;
+}
+
+.routerLinkAuthor {
+    cursor: pointer;
+}
+
+.routerLinkAuthor:hover {
+    text-decoration: underline;
+}
