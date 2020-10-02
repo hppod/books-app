@@ -39,13 +39,4 @@
             </div>
         </mat-card>
     </div>
-    <div class="positionCardAuthor" fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%">
-        <mat-card class="mat-elevation-z3" style="cursor: pointer;" [routerLink]="['/authors/detail', Book.autor.nome]">
-            <mat-card-header>
-                <img mat-card-avatar class="author-image" [src]="Book.autor.imagem"
-                    alt="Photo of a {{Book.autor.nome}}">
-                <div class="authorName-div">{{Book.autor.nome}}</div>
-            </mat-card-header>
-        </mat-card>
-    </div>
 </div>
