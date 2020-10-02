@@ -73,12 +73,12 @@ export class NewBookComponent implements OnInit, OnDestroy {
     this.bookFormGroup = this.builder.group({
       nome: this.builder.control(null, [Validators.required], this.bookValidator.validatorUniqueBookName()),
       sinopse: this.builder.control(null, [Validators.required]),
-      paginas: this.builder.control(null),
+      paginas: this.builder.control(null, [Validators.pattern("^[0-9]*$")]),
       imagem: this.builder.control(null, [Validators.required]),
       editora: this.builder.control(null, [Validators.required]),
       autor: this.builder.control(null, [Validators.required]),
-      isbn10: this.builder.control(null),
-      isbn13: this.builder.control(null)
+      isbn10: this.builder.control(null, [Validators.pattern("^[0-9]*$")]),
+      isbn13: this.builder.control(null, [Validators.pattern("^[0-9]*$")])
     })
   }
 

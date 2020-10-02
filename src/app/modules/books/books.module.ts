@@ -17,14 +17,16 @@ import { BooksComponent } from './books.component';
 import { BookCardComponent } from './book-card/book-card.component';
 import { BookDetailComponent } from './book-detail/book-detail.component'
 import { ComponentsModule } from "./../../components/components.module";
-import { NewBookComponent } from './new-book/new-book.component'
+import { NewBookComponent } from './new-book/new-book.component';
+import { UpdateBookComponent } from './update-book/update-book.component'
 
 @NgModule({
   declarations: [
     BooksComponent,
     BookCardComponent,
     BookDetailComponent,
-    NewBookComponent
+    NewBookComponent,
+    UpdateBookComponent
   ],
   imports: [
     CommonModule,

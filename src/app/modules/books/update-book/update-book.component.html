@@ -1,0 +1,42 @@
+<h2 mat-dialog-title>Atualizar livro: {{this.Book['nome']}}</h2>
+<form [formGroup]="bookFormGroup" class="form">
+    <mat-form-field class="form-element">
+        <mat-label>Editora</mat-label>
+        <input matInput formControlName="editora" placeholder="Editora" required>
+    </mat-form-field>
+    <mat-form-field class="form-element">
+        <mat-label>Imagem</mat-label>
+        <input matInput formControlName="imagem" placeholder="Link da imagem" required>
+    </mat-form-field>
+    <mat-form-field class="form-element">
+        <mat-label>Sinopse</mat-label>
+        <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" formControlName="sinopse"
+            placeholder="Sinopse" required></textarea>
+    </mat-form-field>
+    <mat-form-field class="form-element">
+        <mat-label>Páginas</mat-label>
+        <input matInput formControlName="paginas" placeholder="Páginas">
+    </mat-form-field>
+    <mat-form-field class="form-element">
+        <mat-label>ISBN-10</mat-label>
+        <input matInput formControlName="isbn10" placeholder="ISBN-10">
+    </mat-form-field>
+    <mat-form-field class="form-element">
+        <mat-label>ISBN-13</mat-label>
+        <input matInput formControlName="isbn13" placeholder="ISBN-13">
+    </mat-form-field>
+    <mat-form-field class="form-element">
+        <mat-label>Selecione um autor</mat-label>
+        <mat-select formControlName="autor" [compareWith]="compareAuthor" required>
+            <mat-option *ngFor="let author of authors" [value]="author">{{author.nome}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <div class="form-element">
+        <button class="button" color="primary" mat-button [disabled]="bookFormGroup.invalid"
+            (click)="updateBook()">Atualizar
+            livro</button>
+    </div>
+    <div class="form-element">
+        <button mat-button class="button" color="warn" (click)="closeDialog()">Fechar</button>
+    </div>
+</form>

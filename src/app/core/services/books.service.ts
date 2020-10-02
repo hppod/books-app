@@ -29,4 +29,8 @@ export class BooksService {
     return this.http.get<any>(`${API_URL}/livro/validarNomeLivro`, { params: params })
   }
 
+  updateBookById(bookId: String, body: Livro): Observable<HttpResponse<Livro>> {
+    return this.http.put<Livro>(`${API_URL}/livro/atualizar/${bookId}`, body, { observe: 'response' })
+  }
+
 }
