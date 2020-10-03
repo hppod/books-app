@@ -1,25 +1,10 @@
-.form {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
-}
-
-.form-element {
-    padding: 5px 0px 25px 2px;
-    width: 100%;
-}
-
-.button {
-    width: 100%;
-}
-
-.select-author{
+.select-author {
     font-size: 13px;
     cursor: pointer;
     color: #0000008A;
 }
 
-.select-author:hover{
+.select-author:hover {
     font-size: 13px;
     text-decoration: underline;
     color: rgb(98, 122, 255)

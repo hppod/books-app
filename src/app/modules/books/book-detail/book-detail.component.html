@@ -6,15 +6,23 @@
         <mat-card class="mat-elevation-z0">
             <img mat-card-image class="bookCover-image" [src]="Book.imagem" alt="Photo of a {{Book.nome}}">
         </mat-card>
-        <mat-card class="mat-elevation-z3">
+        <mat-card class="mat-elevation-z3 routerLinkWUnderline" [routerLink]="['/authors/detail', Book.autor.nome]">
             <mat-card-header>
                 <img mat-card-avatar class="author-image" *ngIf="Book.autor.imagem" [src]="Book.autor.imagem"
-                    alt="Photo of a {{Book.autor.nome}}">
-                <img mat-card-avatar class="author-image" *ngIf="!Book.autor.imagem"
-                    src="./../../../../assets/writer.png" alt="Photo of a {{Book.autor.nome}}">
+                    onError="this.src='./../../../../assets/writer.png'" alt="Photo of a {{Book.autor.nome}}">
                 <div class="authorName-div">{{Book.autor.nome}}</div>
             </mat-card-header>
         </mat-card>
+        <br>
+        <div class="row">
+            <button mat-mini-fab color="primary" aria-label="Alterar livro" (click)="openUpdateBookModal()">
+                <mat-icon>edit</mat-icon>
+            </button>
+            &nbsp;
+            <button mat-mini-fab color="warn" aria-label="Apagar livro" (click)="confirmDialog()">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </div>
     </div>
     <div fxFlex="50%" fxFlex.gt-sm="75%">
         <mat-card class="mat-elevation-z0">
@@ -37,15 +45,6 @@
             <div class="row">
                 <p class="bookSynopsis-p">{{Book.sinopse}}</p>
             </div>
-        </mat-card>
-    </div>
-    <div class="positionCardAuthor" fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%">
-        <mat-card class="mat-elevation-z3" style="cursor: pointer;" [routerLink]="['/authors/detail', Book.autor.nome]">
-            <mat-card-header>
-                <img mat-card-avatar class="author-image" [src]="Book.autor.imagem"
-                    alt="Photo of a {{Book.autor.nome}}">
-                <div class="authorName-div">{{Book.autor.nome}}</div>
-            </mat-card-header>
         </mat-card>
     </div>
 </div>
