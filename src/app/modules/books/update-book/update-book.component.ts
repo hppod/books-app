@@ -7,8 +7,6 @@ import { Livro } from 'src/app/core/models/book.model';
 import { AuthorsService } from 'src/app/core/services/authors.service';
 import { BooksService } from 'src/app/core/services/books.service';
 import { Toastr } from 'src/app/core/services/toastr.service';
-import { AuthorValidator } from 'src/app/core/validators/author.validator';
-import { BookValidator } from 'src/app/core/validators/book.validator';
 
 @Component({
   selector: 'app-update-book',

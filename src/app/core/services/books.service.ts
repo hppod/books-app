@@ -33,4 +33,8 @@ export class BooksService {
     return this.http.put<Livro>(`${API_URL}/livro/atualizar/${bookId}`, body, { observe: 'response' })
   }
 
+  deleteBookById(bookId: String): Observable<HttpResponse<Livro>> {
+    return this.http.delete<Livro>(`${API_URL}/livro/apagar/${bookId}`, { observe: 'response' })
+  }
+
 }
